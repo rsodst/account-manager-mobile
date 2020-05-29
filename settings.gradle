@@ -1,0 +1,3 @@
+rootProject.name='AccountManager.Mobile'
+include ':app'
+include ':app:users'
