@@ -8,6 +8,15 @@
     android:paddingLeft="40dp"
     android:paddingRight="40dp">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Welcome back"
+        android:textSize="28sp" />
+
     <EditText
         android:id="@+id/signin_email"
         android:layout_width="match_parent"

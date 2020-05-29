@@ -1,6 +1,7 @@
 package com.modulbank.accountmanager.api
 
 import com.modulbank.accountmanager.models.SignInModel
+import com.modulbank.accountmanager.models.SignUpModel
 import com.modulbank.accountmanager.models.UserModel
 import io.reactivex.Single
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -14,8 +15,7 @@ interface IUserApi {
     fun sigin(@Body model : SignInModel) : Single<UserModel>
 
     @POST("user/signup")
-    fun signup(@Query("email") email : String,
-               @Query("email") password : String) : Single<UserModel>
+    fun sigup(@Body model : SignUpModel) : Single<UserModel>
 
     companion object Factory {
         fun create() : IUserApi {

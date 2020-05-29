@@ -67,7 +67,7 @@ class SignInActivity : AppCompatActivity()
         }
 
         binding.signin.setOnClickListener({
-            model.login(userApi)
+            model.signIn(userApi)
         })
 
 

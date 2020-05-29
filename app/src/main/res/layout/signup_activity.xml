@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical"
     android:paddingLeft="40dp"
     android:paddingRight="40dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Welcome"
+        android:textSize="28sp" />
 
     <EditText
         android:id="@+id/signup_email"
@@ -25,16 +35,32 @@
         android:hint="password"
         android:inputType="textPassword|numberPassword" />
 
+    <EditText
+        android:id="@+id/signup_password_confirmation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="confirm password"
+        android:inputType="textPassword|numberPassword" />
+
     <Button
         android:id="@+id/signup"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Sign Up"/>
+        android:text="Sign Up" />
 
     <ProgressBar
         android:id="@+id/signup_load"
         style="?android:attr/progressBarStyle"
         android:layout_width="match_parent"
         android:layout_height="128dp" />
+
+    <TextView
+        android:id="@+id/signup_errors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:textColor="@android:color/holo_red_dark" />
 
 </LinearLayout>
