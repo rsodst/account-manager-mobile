@@ -10,6 +10,7 @@ import com.modulbank.accountmanager.R
 import com.modulbank.accountmanager.activity.extensions.afterTextChanged
 import com.modulbank.accountmanager.api.IUserApi
 import com.modulbank.accountmanager.dagger.components.DaggerApiComponent
+import com.modulbank.accountmanager.databinding.SigninActivityBinding
 import javax.inject.Inject
 
 
@@ -17,59 +18,55 @@ class SignInActivity : AppCompatActivity()
 {
 
     private val model: SignInViewModel by viewModels()
+    private lateinit var binding : SigninActivityBinding
     @Inject lateinit var userApi : IUserApi
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        DaggerApiComponent.create().inject(this)
-
         super.onCreate(savedInstanceState)
+        DaggerApiComponent.create().inject(this)
+        binding = SigninActivityBinding.inflate(layoutInflater)
 
         supportActionBar?.hide()
 
-        setContentView(R.layout.signin_activity)
+        setContentView(binding.root)
 
-        val email = findViewById<EditText>(R.id.signin_email)
-        val password = findViewById<EditText>(R.id.signin_password)
-        val signInButton =findViewById<Button>(R.id.signin)
-        val errorMessages = findViewById<TextView>(R.id.signin_errors)
-
-        val progressBar = findViewById<ProgressBar>(R.id.signin_load)
-
-        progressBar.visibility = View.GONE
+        binding.signinLoad.visibility = View.GONE
 
         model.state.observe(this, Observer {
-            email.isEnabled = !it.isLoading
-            password.isEnabled = !it.isLoading
-            signInButton.isEnabled = !it.isLoading
+            binding.signinEmail.isEnabled = !it.isLoading
+            binding.signinPassword.isEnabled = !it.isLoading
+            binding.signin.isEnabled = !it.isLoading
 
             if (it.isLoading){
-                progressBar.visibility = View.VISIBLE
+                binding.signinLoad.visibility = View.VISIBLE
             }else{
-                progressBar.visibility = View.GONE
+                binding.signinLoad.visibility = View.GONE
             }
 
             if (it.isResponseError != null){
-                errorMessages.setText(it.isResponseError)
+                binding.signinErrors.setText(it.isResponseError)
+            }else{
+                binding.signinErrors.setText("")
             }
         })
 
         model.passwordValidationError.observe(this, Observer {
-            password.error = it
+            binding.signinPassword.error = it
         })
 
         model.emailValidationError.observe(this, Observer {
-            email.error = it
+            binding.signinEmail.error = it
         })
 
-        email.afterTextChanged {
-            model.changeEmail(email.text.toString())
+        binding.signinEmail.afterTextChanged {
+            model.changeEmail(binding.signinEmail.text.toString())
         }
 
-        password.afterTextChanged {
-            model.changePassword(password.text.toString())
+        binding.signinPassword.afterTextChanged {
+            model.changePassword(binding.signinPassword.text.toString())
         }
 
-        signInButton.setOnClickListener({
+        binding.signin.setOnClickListener({
             model.login(userApi)
         })
 
