@@ -27,6 +27,14 @@
             android:name="com.modulbank.accountmanager.activity.signup.SignUpActivity">
         </activity>
 
+        <activity
+            android:name="com.modulbank.accountmanager.activity.profile.ProfileEditorActivity">
+        </activity>
+
+        <activity
+            android:name="com.modulbank.accountmanager.activity.accounts.AccountsActivity">
+        </activity>
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

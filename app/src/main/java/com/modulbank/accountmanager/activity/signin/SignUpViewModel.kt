@@ -2,7 +2,8 @@ package com.modulbank.accountmanager.activity.signin
 
 import androidx.lifecycle.MutableLiveData
 import com.modulbank.accountmanager.api.IUserApi
-import com.modulbank.accountmanager.models.SignUpModel
+import com.modulbank.accountmanager.models.users.SignUpModel
+import com.modulbank.accountmanager.models.users.UserDao
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
@@ -10,6 +11,7 @@ import retrofit2.HttpException
 class SignUpViewModel : SignInGeneralViewModel<SignUpModel>(SignUpModel())
 {
     val passwordConfirmationValidationError = MutableLiveData<String>()
+    val openProfileEditorActivity = MutableLiveData<Boolean>()
 
     fun changePasswordConfirmation(password: String){
         if (!isPasswordValid(password)) {
@@ -39,7 +41,7 @@ class SignUpViewModel : SignInGeneralViewModel<SignUpModel>(SignUpModel())
         return true
     }
 
-    fun signUp(userApi: IUserApi) {
+    fun signUp(userApi: IUserApi, userDao : UserDao) {
         if (!validate()){
             return
         }
@@ -52,7 +54,10 @@ class SignUpViewModel : SignInGeneralViewModel<SignUpModel>(SignUpModel())
                 ?.subscribe(
                         {
                             state.value = SignInState(isLoading = false, isResponseError = null)
-                            val t = it
+                            
+                            userDao.Insert(it)
+                            
+                            openProfileEditorActivity.value = true
                         },
                         {
                             if (it is HttpException) {

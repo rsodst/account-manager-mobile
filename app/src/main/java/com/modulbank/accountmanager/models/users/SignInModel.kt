@@ -1,4 +1,6 @@
-package com.modulbank.accountmanager.models
+package com.modulbank.accountmanager.models.users
+
+import com.modulbank.accountmanager.models.users.ISignInModel
 
 class SignInModel : ISignInModel
 {

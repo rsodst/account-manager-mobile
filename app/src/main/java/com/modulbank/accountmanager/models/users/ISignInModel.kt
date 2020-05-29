@@ -1,4 +1,4 @@
-package com.modulbank.accountmanager.models
+package com.modulbank.accountmanager.models.users
 
 interface ISignInModel {
     var email : String?

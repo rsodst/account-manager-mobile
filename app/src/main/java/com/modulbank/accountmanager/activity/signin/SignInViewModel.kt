@@ -1,14 +1,18 @@
 package com.modulbank.accountmanager.activity.signin
 
+import androidx.lifecycle.MutableLiveData
 import com.modulbank.accountmanager.api.IUserApi
-import com.modulbank.accountmanager.models.SignInModel
+import com.modulbank.accountmanager.models.users.SignInModel
+import com.modulbank.accountmanager.models.users.UserDao
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
 
 class SignInViewModel : SignInGeneralViewModel<SignInModel>(SignInModel()) {
 
-    fun signIn(userApi: IUserApi) {
+    val openAccountActivity = MutableLiveData<Boolean>()
+
+    fun signIn(userApi: IUserApi, userDao : UserDao) {
         if (!super.validate()){
             return
         }
@@ -21,7 +25,10 @@ class SignInViewModel : SignInGeneralViewModel<SignInModel>(SignInModel()) {
             ?.subscribe(
             {
                 state.value = SignInState(isLoading = false, isResponseError = null)
-                val t = it
+
+                userDao.Insert(it)
+
+                openAccountActivity.value = true
             },
             {
                 if (it is HttpException) {

@@ -1,30 +1,39 @@
 package com.modulbank.accountmanager.api
 
+import com.modulbank.accountmanager.models.profile.ProfileModel
 import com.modulbank.accountmanager.models.users.SignInModel
 import com.modulbank.accountmanager.models.users.SignUpModel
 import com.modulbank.accountmanager.models.users.UserModel
 import io.reactivex.Single
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.http.*
 
-interface IUserApi {
-    @POST("user/signin")
-    fun sigin(@Body model : SignInModel) : Single<UserModel>
+interface IProfileApi {
+    @POST("profile/person-details")
+    fun create(
+        @Header("Authorization") token : String,
+        @Body model : ProfileModel
+    ) : Single<ProfileModel>
 
-    @POST("user/signup")
-    fun sigup(@Body model : SignUpModel) : Single<UserModel>
+    @GET("profile/person-details")
+    fun get(@Header("Authorization") token : String) : Single<ProfileModel>
+
+    @PUT("profile/person-details")
+    fun update(
+        @Header("Authorization") token : String,
+        @Body model : ProfileModel
+    ) : Single<ProfileModel>
 
     companion object Factory {
-        fun create() : IUserApi {
+        fun create() : IProfileApi {
             val retrofit = retrofit2.Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl("http://192.168.0.144:45459/")
                 .build()
 
-            return retrofit.create(IUserApi::class.java)
+            return retrofit.create(IProfileApi::class.java)
         }
     }
 }

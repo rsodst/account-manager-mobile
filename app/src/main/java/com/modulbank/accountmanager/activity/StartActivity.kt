@@ -2,27 +2,29 @@ package com.modulbank.accountmanager.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.modulbank.accountmanager.R
 import com.modulbank.accountmanager.activity.signin.SignInActivity
 import com.modulbank.accountmanager.activity.signup.SignUpActivity
+import com.modulbank.accountmanager.databinding.StartLayoutBinding
 
 class StartActivity : AppCompatActivity()
 {
+    private lateinit var binding : StartLayoutBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = StartLayoutBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
 
         supportActionBar?.hide()
 
-        setContentView(R.layout.start_layout);
+        setContentView(binding.root);
 
-        findViewById<Button>(R.id.signin_button).setOnClickListener {
+        binding.signinButton.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
             this.startActivity(intent)
         }
 
-        findViewById<Button>(R.id.signup_button).setOnClickListener {
+        binding.signupButton.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             this.startActivity(intent)
         }

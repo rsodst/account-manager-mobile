@@ -1,5 +1,6 @@
 package com.modulbank.accountmanager.activity.signup
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -8,11 +9,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.modulbank.accountmanager.R
 import com.modulbank.accountmanager.activity.extensions.afterTextChanged
+import com.modulbank.accountmanager.activity.profile.ProfileEditorActivity
+import com.modulbank.accountmanager.activity.signin.SignInActivity
 import com.modulbank.accountmanager.activity.signin.SignUpViewModel
 import com.modulbank.accountmanager.api.IUserApi
-import com.modulbank.accountmanager.dagger.components.DaggerApiComponent
+import com.modulbank.accountmanager.dagger.components.DaggerAppComponent
+import com.modulbank.accountmanager.dagger.modules.AppModule
+import com.modulbank.accountmanager.dagger.modules.DatabaseModule
 import com.modulbank.accountmanager.databinding.SigninActivityBinding
 import com.modulbank.accountmanager.databinding.SignupActivityBinding
+import com.modulbank.accountmanager.models.users.UserDao
 import javax.inject.Inject
 
 
@@ -22,10 +28,15 @@ class SignUpActivity : AppCompatActivity()
     private val model: SignUpViewModel by viewModels()
     private lateinit var binding : SignupActivityBinding
     @Inject lateinit var userApi : IUserApi
+    @Inject lateinit var userDao : UserDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DaggerApiComponent.create().inject(this)
+
+        DaggerAppComponent.builder()
+            .databaseModule(DatabaseModule(application))
+            .build().inject(this)
+
         binding = SignupActivityBinding.inflate(layoutInflater)
 
         supportActionBar?.hide()
@@ -33,6 +44,13 @@ class SignUpActivity : AppCompatActivity()
         setContentView(binding.root)
 
         binding.signupLoad.visibility = View.GONE
+
+        model.openProfileEditorActivity.observe(this, Observer {
+            val intent = Intent(this, ProfileEditorActivity::class.java)
+            intent.putExtra("showSkipButton", true)
+            this.startActivity(intent)
+            finish()
+        })
 
         model.state.observe(this, Observer {
             binding.signupEmail.isEnabled = !it.isLoading
@@ -77,9 +95,7 @@ class SignUpActivity : AppCompatActivity()
         }
 
         binding.signup.setOnClickListener({
-            model.signUp(userApi)
+            model.signUp(userApi, userDao)
         })
-
-
     }
 }

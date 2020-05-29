@@ -3,9 +3,7 @@ package com.modulbank.accountmanager.activity.signin
 import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.modulbank.accountmanager.api.IUserApi
-import com.modulbank.accountmanager.models.ISignInModel
-import com.modulbank.accountmanager.models.SignInModel
+import com.modulbank.accountmanager.models.users.ISignInModel
 import retrofit2.HttpException
 
 abstract class SignInGeneralViewModel<TSignInModel>(signInModel : TSignInModel) : ViewModel() where TSignInModel : ISignInModel
