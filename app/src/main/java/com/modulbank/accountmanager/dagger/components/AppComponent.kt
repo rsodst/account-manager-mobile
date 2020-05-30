@@ -1,6 +1,6 @@
 package com.modulbank.accountmanager.dagger.components
 
-import com.modulbank.accountmanager.activity.accoun_operation.AccountOperationActivity
+import com.modulbank.accountmanager.activity.account_operation.AccountOperationActivity
 import com.modulbank.accountmanager.activity.accounts.AccountsActivity
 import com.modulbank.accountmanager.activity.account_editor.AccountEditorActivity
 import com.modulbank.accountmanager.activity.profile.ProfileEditorActivity

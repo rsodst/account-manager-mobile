@@ -44,7 +44,7 @@
         </activity>
 
         <activity
-            android:name="com.modulbank.accountmanager.activity.accoun_operation.AccountOperationActivity">
+            android:name="com.modulbank.accountmanager.activity.account_operation.AccountOperationActivity">
         </activity>
 
 

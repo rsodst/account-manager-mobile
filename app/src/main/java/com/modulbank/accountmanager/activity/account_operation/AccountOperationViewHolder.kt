@@ -1,13 +1,11 @@
-package com.modulbank.accountmanager.activity.accoun_operation
+package com.modulbank.accountmanager.activity.account_operation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.modulbank.accountmanager.R
 import com.modulbank.accountmanager.models.accounts.AccountActionModel
-import com.modulbank.accountmanager.models.accounts.AccountModel
 import com.modulbank.accountmanager.models.accounts.ActionType
 
 

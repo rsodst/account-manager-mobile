@@ -1,4 +1,4 @@
-package com.modulbank.accountmanager.activity.accoun_operation
+package com.modulbank.accountmanager.activity.account_operation
 
 import android.content.Intent
 import android.os.Bundle
@@ -92,7 +92,6 @@ class AccountOperationActivity : AppCompatActivity() {
                 }
             }
         })
-
 
         viewModel.loadAccountActionsList(userDao, accountApi, accountId!!)
     }

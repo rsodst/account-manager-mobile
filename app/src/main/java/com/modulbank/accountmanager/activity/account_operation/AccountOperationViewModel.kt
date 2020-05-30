@@ -1,17 +1,14 @@
-package com.modulbank.accountmanager.activity.accoun_operation
+package com.modulbank.accountmanager.activity.account_operation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.modulbank.accountmanager.activity.signin.SignInState
 import com.modulbank.accountmanager.api.IAccountApi
 import com.modulbank.accountmanager.models.accounts.AccountActionModel
-import com.modulbank.accountmanager.models.accounts.AccountModel
 import com.modulbank.accountmanager.models.accounts.RefillModel
 import com.modulbank.accountmanager.models.users.UserDao
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
-import java.lang.Exception
 import java.math.BigDecimal
 
 class AccountOperationViewModel : ViewModel() {
