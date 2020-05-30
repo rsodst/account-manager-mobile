@@ -1,5 +1,6 @@
 package com.modulbank.accountmanager.api
 
+import com.modulbank.accountmanager.EnvironmentSettings
 import com.modulbank.accountmanager.models.accounts.*
 import com.modulbank.accountmanager.models.profile.ProfileModel
 import io.reactivex.Maybe
@@ -46,7 +47,7 @@ interface IAccountApi {
             val retrofit = retrofit2.Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://192.168.0.144:45459/")
+                .baseUrl(EnvironmentSettings.apiUrl)
                 .build()
 
             return retrofit.create(IAccountApi::class.java)
