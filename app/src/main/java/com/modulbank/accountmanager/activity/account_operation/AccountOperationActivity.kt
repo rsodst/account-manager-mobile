@@ -71,6 +71,7 @@ class AccountOperationActivity : AppCompatActivity() {
 
         val bundle = intent.extras
         val accountId = bundle?.getString("accountId")
+        val currency = bundle?.getInt("currency")
 
         binding.accountOperationRefill.setOnClickListener({
             val refillPopupView = layoutInflater.inflate(R.layout.refill_popup_layout, null)
@@ -88,6 +89,28 @@ class AccountOperationActivity : AppCompatActivity() {
                     amount.error = "Amount is required"
                 }else {
                     viewModel.refill(userDao, accountApi, accountId!!, amount.text.toString().toBigDecimal())
+                    popupWindow.dismiss();
+                }
+            }
+        })
+
+        binding.accountOperationTransfer.setOnClickListener({
+            val refillPopupView = layoutInflater.inflate(R.layout.transfer_popup_layout, null)
+            val width = LinearLayout.LayoutParams.MATCH_PARENT
+            val height = LinearLayout.LayoutParams.WRAP_CONTENT
+            val focusable = true
+            val popupWindow = PopupWindow(refillPopupView, width,height,focusable)
+            popupWindow.showAtLocation(refillPopupView, Gravity.CENTER, 0,0)
+
+            val amount = refillPopupView.findViewById<EditText>(R.id.transfer_amount)
+            val number = refillPopupView.findViewById<EditText>(R.id.transfer_number)
+
+            refillPopupView.findViewById<Button>(R.id.transfer_button).setOnClickListener{
+
+                if (amount.text.isNullOrEmpty()){
+                    amount.error = "Amount is required"
+                }else {
+                    viewModel.transfer(userDao, accountApi, accountId!!, amount.text.toString().toBigDecimal(), number.text.toString().toLong(), currency!!)
                     popupWindow.dismiss();
                 }
             }
