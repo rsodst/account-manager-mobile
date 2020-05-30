@@ -1,11 +1,19 @@
 package com.modulbank.accountmanager.activity.accoun_operation
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.PopupWindow
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.modulbank.accountmanager.R
+import com.modulbank.accountmanager.activity.accounts.AccountsActivity
 import com.modulbank.accountmanager.api.IAccountApi
 import com.modulbank.accountmanager.dagger.components.DaggerAppComponent
 import com.modulbank.accountmanager.dagger.modules.DatabaseModule
@@ -64,6 +72,34 @@ class AccountOperationActivity : AppCompatActivity() {
         val bundle = intent.extras
         val accountId = bundle?.getString("accountId")
 
-        viewModel.LoadAccountActionsList(userDao, accountApi, accountId!!)
+        binding.accountOperationRefill.setOnClickListener({
+            val refillPopupView = layoutInflater.inflate(R.layout.refill_popup_layout, null)
+            val width = LinearLayout.LayoutParams.MATCH_PARENT
+            val height = LinearLayout.LayoutParams.WRAP_CONTENT
+            val focusable = true
+            val popupWindow = PopupWindow(refillPopupView, width,height,focusable)
+            popupWindow.showAtLocation(refillPopupView, Gravity.CENTER, 0,0)
+
+            val amount = refillPopupView.findViewById<EditText>(R.id.refill_amount)
+
+            refillPopupView.findViewById<Button>(R.id.refill_button).setOnClickListener{
+
+                if (amount.text.isNullOrEmpty()){
+                    amount.error = "Amount is required"
+                }else {
+                    viewModel.refill(userDao, accountApi, accountId!!, amount.text.toString().toBigDecimal())
+                    popupWindow.dismiss();
+                }
+            }
+        })
+
+
+        viewModel.loadAccountActionsList(userDao, accountApi, accountId!!)
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, AccountsActivity::class.java)
+        this.startActivity(intent)
+        finish()
     }
 }

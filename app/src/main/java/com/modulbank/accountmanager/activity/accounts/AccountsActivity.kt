@@ -31,12 +31,6 @@ class AccountsActivity : AppCompatActivity() {
     private lateinit var binding : AccountLayoutBinding
     val viewModel : AccountsViewModel by viewModels<AccountsViewModel>()
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.bottombar_menu, menu)
-        return true
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -78,27 +72,22 @@ class AccountsActivity : AppCompatActivity() {
             }
         })
 
-        binding.fab.setOnClickListener{
+        binding.accountAdd.setOnClickListener{
             val intent = Intent(this, AccountEditorActivity::class.java)
             this.startActivity(intent)
         }
 
+        binding.appSettings.setOnClickListener({
+            val intent = Intent(this, SettingsActivity::class.java)
+            this.startActivity(intent)
+        })
+
+        binding.appProfile.setOnClickListener({
+            val intent = Intent(this, ProfileEditorActivity::class.java)
+            this.startActivity(intent)
+        })
+
         viewModel.LoadAccountList(userDao, accountApi)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.itemId) {
-            R.id.appbar_settings -> {
-                val intent = Intent(this, SettingsActivity::class.java)
-                this.startActivity(intent)
-            }
-            R.id.appbar_profile_editor -> {
-                val intent = Intent(this, ProfileEditorActivity::class.java)
-                this.startActivity(intent)
-            }
-        }
-
-        return true
     }
 
     override fun onBackPressed() {

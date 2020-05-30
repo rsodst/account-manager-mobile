@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/drop_shadow"
+    android:gravity="center_horizontal|center_vertical"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/refill_caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Refill account"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/refill_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:ems="10"
+        android:hint="Amount"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/refill_button"
+        android:layout_width="234dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
+        android:text="Refill" />
+</LinearLayout>
