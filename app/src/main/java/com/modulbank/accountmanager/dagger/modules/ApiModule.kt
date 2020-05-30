@@ -1,6 +1,7 @@
 package com.modulbank.accountmanager.dagger.modules
 
 import androidx.room.Room
+import com.modulbank.accountmanager.api.IAccountApi
 import com.modulbank.accountmanager.api.IProfileApi
 import com.modulbank.accountmanager.api.IUserApi
 import com.modulbank.accountmanager.database.AppDatabase
@@ -18,4 +19,8 @@ class ApiModule {
     @Singleton
     @Provides
     public fun provideProfileApi() : IProfileApi { return IProfileApi.create()}
+
+    @Singleton
+    @Provides
+    public fun accountApi() : IAccountApi { return IAccountApi.create() }
 }

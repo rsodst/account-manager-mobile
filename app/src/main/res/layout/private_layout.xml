@@ -1,18 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+    <ProgressBar
+        android:id="@+id/private_layout_loader"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="130dp"
+        android:layout_height="126dp"
+        android:translationZ="5dp"
+        android:visibility="visible"
+        app:layout_anchor="@+id/nestedScrollView"
+        app:layout_anchorGravity="center" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/private_layout_errors"
         android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:textColor="@android:color/holo_red_dark"
+        android:translationZ="5dp"
+        app:layout_anchor="@+id/private_layout_loader"
+        app:layout_anchorGravity="center" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="694dp"
+        android:fillViewport="true">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_gravity="bottom"
+        app:backgroundTint="#DADADA"
+        app:fabAlignmentMode="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+
+        </LinearLayout>
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
-</LinearLayout>
+        android:clickable="true"
+        app:backgroundTint="#E3E3E3"
+        app:layout_anchor="@id/bottom_app_bar"
+        app:srcCompat="@drawable/ic_add_24px" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

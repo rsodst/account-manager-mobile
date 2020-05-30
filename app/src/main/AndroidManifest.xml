@@ -35,6 +35,12 @@
             android:name="com.modulbank.accountmanager.activity.accounts.AccountsActivity">
         </activity>
 
+
+        <activity
+            android:name="com.modulbank.accountmanager.activity.settings.SettingsActivity">
+        </activity>
+
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

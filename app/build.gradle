@@ -135,4 +135,8 @@ dependencies {
 
     // Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
+
+    implementation 'com.google.android.material:material:1.0.0-alpha1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    compile "net.steamcrafted:materialiconlib:1.1.5"
 }

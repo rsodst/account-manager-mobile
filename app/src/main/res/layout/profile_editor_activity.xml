@@ -9,7 +9,7 @@
     android:paddingRight="40dp">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/profile_details_caption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"

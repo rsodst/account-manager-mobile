@@ -12,6 +12,7 @@ import com.modulbank.accountmanager.activity.extensions.afterTextChanged
 import com.modulbank.accountmanager.activity.profile.ProfileEditorActivity
 import com.modulbank.accountmanager.activity.signin.SignInActivity
 import com.modulbank.accountmanager.activity.signin.SignUpViewModel
+import com.modulbank.accountmanager.api.IProfileApi
 import com.modulbank.accountmanager.api.IUserApi
 import com.modulbank.accountmanager.dagger.components.DaggerAppComponent
 import com.modulbank.accountmanager.dagger.modules.AppModule
@@ -28,6 +29,7 @@ class SignUpActivity : AppCompatActivity()
     private val model: SignUpViewModel by viewModels()
     private lateinit var binding : SignupActivityBinding
     @Inject lateinit var userApi : IUserApi
+    @Inject lateinit var profileApi : IProfileApi
     @Inject lateinit var userDao : UserDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -95,7 +97,7 @@ class SignUpActivity : AppCompatActivity()
         }
 
         binding.signup.setOnClickListener({
-            model.signUp(userApi, userDao)
+            model.signUp(userApi, profileApi, userDao, this)
         })
     }
 }
