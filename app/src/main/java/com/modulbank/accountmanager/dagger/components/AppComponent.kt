@@ -1,5 +1,6 @@
 package com.modulbank.accountmanager.dagger.components
 
+import com.modulbank.accountmanager.activity.accoun_operation.AccountOperationActivity
 import com.modulbank.accountmanager.activity.accounts.AccountsActivity
 import com.modulbank.accountmanager.activity.account_editor.AccountEditorActivity
 import com.modulbank.accountmanager.activity.profile.ProfileEditorActivity
@@ -22,4 +23,5 @@ interface AppComponent {
     fun inject(profileEditorActivity: ProfileEditorActivity)
     fun inject(settingsActivity: SettingsActivity)
     fun inject(accountCreatorActivity : AccountEditorActivity)
+    fun inject(accountCreatorActivity : AccountOperationActivity)
 }

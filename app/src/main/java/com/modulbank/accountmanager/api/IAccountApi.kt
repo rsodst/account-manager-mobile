@@ -1,5 +1,6 @@
 package com.modulbank.accountmanager.api
 
+import com.modulbank.accountmanager.models.accounts.AccountActionModel
 import com.modulbank.accountmanager.models.accounts.AccountEditModel
 import com.modulbank.accountmanager.models.accounts.AccountModel
 import com.modulbank.accountmanager.models.profile.ProfileModel
@@ -8,9 +9,14 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
+// TOOD: pagination skip/take
+
 interface IAccountApi {
     @GET("accounts/list/0/100")
     fun get(@Header("Authorization") token : String) : Single<List<AccountModel>>
+
+    @GET("accounts/{accountId}/actions/0/100")
+    fun getActions(@Header("Authorization") token : String, @Path("accountId") accountId : String) : Single<List<AccountActionModel>>
 
     @GET("accounts/{accountId}")
     fun getAccount(@Header("Authorization") token : String, @Path("accountId") accountId : String) : Single<AccountModel>

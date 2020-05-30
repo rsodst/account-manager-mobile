@@ -41,12 +41,11 @@
 
         <activity
             android:name="com.modulbank.accountmanager.activity.account_editor.AccountEditorActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.modulbank.accountmanager.activity.accoun_operation.AccountOperationActivity">
+        </activity>
 
 
 

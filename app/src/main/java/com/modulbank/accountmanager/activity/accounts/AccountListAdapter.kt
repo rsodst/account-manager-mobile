@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.modulbank.accountmanager.R
+import com.modulbank.accountmanager.activity.accoun_operation.AccountOperationActivity
 import com.modulbank.accountmanager.activity.account_editor.AccountEditorActivity
 import com.modulbank.accountmanager.models.accounts.AccountModel
 
@@ -22,6 +23,9 @@ class AccountListAdapter(val list : List<AccountModel>) : RecyclerView.Adapter<A
         val account : AccountModel = list[position]
 
         holder.itemView.setOnClickListener{
+            val intent = Intent(holder.itemView.context, AccountOperationActivity::class.java)
+            intent.putExtra("accountId", holder.id)
+            holder.itemView.context.startActivity(intent)
         }
 
         holder.editButtonView?.setOnClickListener{

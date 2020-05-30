@@ -18,7 +18,7 @@ import com.modulbank.accountmanager.activity.settings.SettingsActivity
 import com.modulbank.accountmanager.api.IAccountApi
 import com.modulbank.accountmanager.dagger.components.DaggerAppComponent
 import com.modulbank.accountmanager.dagger.modules.DatabaseModule
-import com.modulbank.accountmanager.databinding.PrivateLayoutBinding
+import com.modulbank.accountmanager.databinding.AccountLayoutBinding
 import com.modulbank.accountmanager.databinding.ProfileEditorActivityBinding
 import com.modulbank.accountmanager.models.accounts.AccountModel
 import com.modulbank.accountmanager.models.users.UserDao
@@ -28,7 +28,7 @@ class AccountsActivity : AppCompatActivity() {
 
     @Inject lateinit var userDao : UserDao
     @Inject lateinit var accountApi : IAccountApi
-    private lateinit var binding : PrivateLayoutBinding
+    private lateinit var binding : AccountLayoutBinding
     val viewModel : AccountsViewModel by viewModels<AccountsViewModel>()
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -40,9 +40,7 @@ class AccountsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = PrivateLayoutBinding.inflate(layoutInflater)
-
-        setSupportActionBar(binding.bottomAppBar)
+        binding = AccountLayoutBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 
@@ -50,16 +48,16 @@ class AccountsActivity : AppCompatActivity() {
             .databaseModule(DatabaseModule(application))
             .build().inject(this)
 
-        binding.privateLayoutLoader.visibility = View.GONE
+        binding.accountLayoutLoader.visibility = View.GONE
 
-        binding.recycler.apply{
+        binding.accountLayoutRecycler.apply{
             hasFixedSize()
             layoutManager = LinearLayoutManager(context)
             adapter = AccountListAdapter(listOf())
         }
 
         viewModel.accounts.observe(this, Observer {
-            binding.recycler.apply{
+            binding.accountLayoutRecycler.apply{
                 hasFixedSize()
                 layoutManager = LinearLayoutManager(context)
                 adapter = AccountListAdapter(it)
@@ -68,15 +66,15 @@ class AccountsActivity : AppCompatActivity() {
 
         viewModel.state.observe(this, Observer {
             if (it.isLoading){
-                binding.privateLayoutLoader.visibility = View.VISIBLE
+                binding.accountLayoutLoader.visibility = View.VISIBLE
             }else{
-                binding.privateLayoutLoader.visibility = View.GONE
+                binding.accountLayoutLoader.visibility = View.GONE
             }
 
             if (it.isResponseError != null){
-                binding.privateLayoutErrors.setText(it.isResponseError)
+                binding.accountLayoutErrors.setText(it.isResponseError)
             }else{
-                binding.privateLayoutErrors.setText("")
+                binding.accountLayoutErrors.setText("")
             }
         })
 

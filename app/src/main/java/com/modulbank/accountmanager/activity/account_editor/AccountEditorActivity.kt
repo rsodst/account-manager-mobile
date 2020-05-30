@@ -15,20 +15,20 @@ import com.modulbank.accountmanager.activity.profile.ProfileEditorViewModel
 import com.modulbank.accountmanager.api.IAccountApi
 import com.modulbank.accountmanager.dagger.components.DaggerAppComponent
 import com.modulbank.accountmanager.dagger.modules.DatabaseModule
-import com.modulbank.accountmanager.databinding.AccountEditorBinding
+import com.modulbank.accountmanager.databinding.AccountEditorLayoutBinding
 import com.modulbank.accountmanager.models.users.UserDao
 import javax.inject.Inject
 
 class AccountEditorActivity : AppCompatActivity() {
 
-    private lateinit var binding : AccountEditorBinding
+    private lateinit var binding : AccountEditorLayoutBinding
     private val viewModel : AccountEditorViewModel by viewModels()
     @Inject lateinit var userDao : UserDao
     @Inject lateinit var accountApi : IAccountApi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = AccountEditorBinding.inflate(layoutInflater)
+        binding = AccountEditorLayoutBinding.inflate(layoutInflater)
 
         DaggerAppComponent.builder()
             .databaseModule(DatabaseModule(application))
