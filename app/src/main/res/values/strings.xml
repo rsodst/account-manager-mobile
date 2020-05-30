@@ -3,4 +3,11 @@
     <!-- Authentication layout -->
     <string name="signin_transition">Sign In</string>
     <string name="signup_transition">Sign Up</string>
+
+    <string-array id="currencies" name="currencies">
+        <item>RUB</item>
+        <item>USD</item>
+        <item>EUR</item>
+    </string-array>
+
 </resources>

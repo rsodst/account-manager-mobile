@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.modulbank.accountmanager.R
+import com.modulbank.accountmanager.activity.account_editor.AccountEditorActivity
 import com.modulbank.accountmanager.activity.profile.ProfileEditorActivity
 import com.modulbank.accountmanager.activity.settings.SettingsActivity
 import com.modulbank.accountmanager.api.IAccountApi
@@ -79,6 +80,10 @@ class AccountsActivity : AppCompatActivity() {
             }
         })
 
+        binding.fab.setOnClickListener{
+            val intent = Intent(this, AccountEditorActivity::class.java)
+            this.startActivity(intent)
+        }
 
         viewModel.LoadAccountList(userDao, accountApi)
     }

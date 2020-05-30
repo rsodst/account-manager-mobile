@@ -49,19 +49,34 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/card_date_caption"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="30dp"
-                    android:text="Creation date" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="133dp"
+                        android:layout_height="37dp"
+                        android:layout_weight="1"
+                        android:text="Creation Date" />
+
+                    <Button
+                        android:id="@+id/account_editor"
+                        android:layout_width="50dp"
+                        android:layout_height="36dp"
+                        android:drawableLeft="@drawable/ic_edit_24px"
+                        android:drawableTint="@android:color/white"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/card_account_creationdate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="date"
+                    android:inputType="datetime"
                     android:paddingTop="10dp"
                     tools:text="2020-01-02" />
             </LinearLayout>

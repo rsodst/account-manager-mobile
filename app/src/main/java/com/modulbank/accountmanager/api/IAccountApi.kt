@@ -1,5 +1,6 @@
 package com.modulbank.accountmanager.api
 
+import com.modulbank.accountmanager.models.accounts.AccountEditModel
 import com.modulbank.accountmanager.models.accounts.AccountModel
 import com.modulbank.accountmanager.models.profile.ProfileModel
 import io.reactivex.Single
@@ -10,6 +11,18 @@ import retrofit2.http.*
 interface IAccountApi {
     @GET("accounts/list/0/100")
     fun get(@Header("Authorization") token : String) : Single<List<AccountModel>>
+
+    @GET("accounts/{accountId}")
+    fun getAccount(@Header("Authorization") token : String, @Path("accountId") accountId : String) : Single<AccountModel>
+
+    @DELETE("accounts/{accountId}")
+    fun deleteAccount(@Header("Authorization") token : String, @Path("accountId") accountId : String) : Single<AccountModel>
+
+    @POST("accounts/create")
+    fun createAccount(@Header("Authorization") token : String, @Body accountModel : AccountEditModel) : Single<AccountModel>
+
+    @PUT("accounts/{accountId}")
+    fun updateAccount(@Header("Authorization") token : String, @Body accountModel : AccountEditModel, @Path("accountId") accountId : String) : Single<AccountModel>
 
     companion object Factory {
         fun create() : IAccountApi {

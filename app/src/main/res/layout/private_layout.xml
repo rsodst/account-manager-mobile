@@ -29,7 +29,9 @@
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="694dp"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:overScrollMode="always"
+        android:paddingBottom="75dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"

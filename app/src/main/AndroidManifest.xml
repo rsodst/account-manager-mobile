@@ -35,10 +35,20 @@
             android:name="com.modulbank.accountmanager.activity.accounts.AccountsActivity">
         </activity>
 
-
         <activity
             android:name="com.modulbank.accountmanager.activity.settings.SettingsActivity">
         </activity>
+
+        <activity
+            android:name="com.modulbank.accountmanager.activity.account_editor.AccountEditorActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+
+
 
 
     </application>

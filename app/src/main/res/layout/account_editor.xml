@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/account_editor_caption"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:layout_marginTop="100dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Create account"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/account_editor_description"
+        android:layout_width="match_parent"
+        android:layout_height="139dp"
+        android:ems="10"
+        android:gravity="start"
+        android:hint="Description"
+        android:inputType="textMultiLine|textPersonName|textImeMultiLine"
+        android:padding="20dp" />
+
+    <Spinner
+        android:id="@+id/account_editor_currency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:spinnerMode="dialog" />
+
+    <EditText
+        android:id="@+id/account_editor_limit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="40dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/account_editor_create"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Create" />
+
+    <Button
+        android:id="@+id/account_editor_delete"
+        android:layout_width="209dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Delete" />
+
+    <ProgressBar
+        android:id="@+id/account_editor_loader"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/account_editor_error"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:textColor="@android:color/holo_red_dark"
+        android:translationZ="5dp"
+        app:layout_anchor="@+id/private_layout_loader"
+        app:layout_anchorGravity="center" />
+
+</LinearLayout>
