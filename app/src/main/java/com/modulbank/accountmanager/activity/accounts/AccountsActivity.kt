@@ -43,6 +43,7 @@ class AccountsActivity : AppCompatActivity() {
             .build().inject(this)
 
         binding.accountLayoutLoader.visibility = View.GONE
+        binding.accountLayoutEmptyCaption.visibility = View.VISIBLE
 
         binding.accountLayoutRecycler.apply{
             hasFixedSize()
@@ -51,6 +52,11 @@ class AccountsActivity : AppCompatActivity() {
         }
 
         viewModel.accounts.observe(this, Observer {
+
+            if (it.isNotEmpty()){
+                binding.accountLayoutEmptyCaption.visibility = View.GONE
+            }
+
             binding.accountLayoutRecycler.apply{
                 hasFixedSize()
                 layoutManager = LinearLayoutManager(context)
