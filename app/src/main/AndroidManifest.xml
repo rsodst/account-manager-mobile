@@ -12,42 +12,49 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name="com.modulbank.accountmanager.activity.StartActivity">
+            android:name=".activity.StartActivity"
+            android:label="modulbank.accountmanager">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
-            <action android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <intent-filter>
+                <data android:scheme="https" android:host="https://account-manager-frontend.herokuapp.com" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+
         </activity>
 
         <activity
-            android:name="com.modulbank.accountmanager.activity.signin.SignInActivity">
+            android:name=".activity.signin.SignInActivity">
         </activity>
 
         <activity
-            android:name="com.modulbank.accountmanager.activity.signup.SignUpActivity">
+            android:name=".activity.signup.SignUpActivity">
         </activity>
 
         <activity
-            android:name="com.modulbank.accountmanager.activity.profile.ProfileEditorActivity">
+            android:name=".activity.profile.ProfileEditorActivity">
         </activity>
 
         <activity
-            android:name="com.modulbank.accountmanager.activity.accounts.AccountsActivity">
+            android:name=".activity.accounts.AccountsActivity">
         </activity>
 
         <activity
-            android:name="com.modulbank.accountmanager.activity.settings.SettingsActivity">
+            android:name=".activity.settings.SettingsActivity">
         </activity>
 
         <activity
-            android:name="com.modulbank.accountmanager.activity.account_editor.AccountEditorActivity">
+            android:name=".activity.account_editor.AccountEditorActivity">
         </activity>
 
         <activity
-            android:name="com.modulbank.accountmanager.activity.account_operation.AccountOperationActivity">
+            android:name=".activity.account_operation.AccountOperationActivity">
         </activity>
-
-
 
 
     </application>
